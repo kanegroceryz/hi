@@ -4086,15 +4086,28 @@ do
                 end
             })
             
-            local ClickGUI = Settings:Section("Click GUI", "Right")
+            local ClickGUI = Settings:Section("Miscellaneous", "Right")
             
             ClickGUI:Toggle({
-                Title = "Enable Anime",
+                Title = "Miscellaneous Features",
                 Callback = function(State)
-                    Window.ToggleAnime(State)
+                    getgenv().SettingFPS = State
+                    if getgenv().SettingFPS == false then
+                            setfpscap(60)
+                        end
+                    end
                 end
             })
-            
+            ClickGUI:Slider({
+                Title = "FPS Slider",
+                Flag = "FPS Slider",
+                Default = 60,
+                Min = 30,
+                Max = 244,
+                Decimals = 0.1,
+                Callback = function(State)
+                setfpscap(v)            
+            })
             ClickGUI:Dropdown({
                 Title = "Anime",
                 List = {"Astolfo", "Violet", "Rem", "Aiko", "Asuka"},
@@ -4105,7 +4118,7 @@ do
             })
 
             ClickGUI:Button({
-                Title = "Self Destruct",
+                Title = "Unload",
                 Callback = function()
                     Library.SelfDestruct()
                     Additional()
