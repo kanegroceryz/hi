@@ -1124,9 +1124,9 @@ do -- UI
                       for i,v in pairs(Players:GetPlayers()) do
                         if v.Name ~= Player.Name then
                             pcall(function()
-                                v.Character.HumanoidRootPart.Size = Vector3.new(ExpanderSize2,ExpanderSize2,ExpanderSize2)
-                                v.Character.HumanoidRootPart.Transparency = ExpanderTransparency2
-                                v.Character.HumanoidRootPart.CanCollide = false
+                                v.Character.Hitbox.Size = Vector3.new(ExpanderSize2,ExpanderSize2,ExpanderSize2)
+                                v.Character.Hitbox.Transparency = ExpanderTransparency2
+                                v.Character.Hitbox.CanCollide = false
                                 end)
                             end 
                         end
@@ -1134,9 +1134,9 @@ do -- UI
                             for i,v in pairs(Players:GetPlayers()) do
                                 if v.Name ~= Player.Name then
                                     pcall(function()
-                                        v.Character.HumanoidRootPart.Size = Vector3.new(2,2,1)
-                                        v.Character.HumanoidRootPart.Transparency = 0
-                                        v.Character.HumanoidRootPart.CanCollide = false
+                                        v.Character.Hitbox.Size = Vector3.new(2,2,1)
+                                        v.Character.Hitbox.Transparency = 0
+                                        v.Character.Hitbox.CanCollide = false
                                     end)
                                 end
                             end
