@@ -27,6 +27,7 @@ getgenv().ExpanderTransparency = 0.5
 getgenv().Expander2 = false
 getgenv().ExpanderSize2 = 5
 getgenv().ExpanderTransparency2 = 0.5
+
 Player.CharacterAdded:Connect(function(character)
     Char = character
 end)
