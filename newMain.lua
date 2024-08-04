@@ -705,7 +705,7 @@ function library.createdropdown(holder, content, flag, callback, default, max, s
 
                 value.Text = ""
 
-                library.flags[flag] = chosen
+                --library.flags[flag] = chosen
                 callback(chosen)
             end
     end
