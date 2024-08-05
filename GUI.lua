@@ -1,5 +1,5 @@
 -- // Dependencies
-local LinoriaRepo = "https://raw.githubusercontent.com/Stefanuk12/LinoriaLib/main/"
+local LinoriaRepo = "https://raw.githubusercontent.com/violin-suzutsuki/LinoriaLib/main/"
 local Library = loadstring(game:HttpGet(LinoriaRepo .. "Library.lua"))()
 local ThemeManager = loadstring(game:HttpGet(LinoriaRepo .. "addons/ThemeManager.lua"))()
 local SaveManager = loadstring(game:HttpGet(LinoriaRepo .. "addons/SaveManager.lua"))()
@@ -99,60 +99,7 @@ do
             AimingSettings.LockMode.Enabled = Value
         end
     })
-
-    local Stats = game:GetService("Stats")
-    local RunService = game:GetService("RunService")
-
--- // Vars
-    local DataPing = Stats.Network.ServerStatsItem["Data Ping"]
-
--- // Workout the prediction stuff
-    local PredictionBase = 0.037
-    local CurrentPredictionValue = 0
-
-RunService.Heartbeat:Connect(function()
-    -- // Workout the prediction value
-    local Ping = tostring(DataPing:GetValueString()):split(" ")[1]
-    CurrentPredictionValue = (Ping / 1000 + PredictionBase)
-end)
-
--- // Applies prediction
-local function ApplyPrediction(Target: BasePart)
-    -- // Workout the predicted place
-    local Predicted = Target.CFrame + (Target.Velocity * CurrentPredictionValue)
-
-    -- // Return it
-    return Predicted
-end
-
-
-local __index
-__index = hookmetamethod(game, "__index", function(t, k)
-   
-    if (not checkcaller() and t:IsA("Mouse") and k == "Hit" and AimingChecks.IsAvailable()) then
-        
-        return ApplyPrediction(AimingSelected.Part)
-    end
-
-   
-    return __index(t, k)
-end)
-
-
-    
-    local UniversalGroupBox = AimingTab.Groupboxes.Universal
-    UniversalGroupBox:AddSlider("PredictionBase", {
-    Text = "Prediction Base",
-    Tooltip = "Configure the prediction",
-    Default = PredictionBase,
-    Min = 0,
-    Max = 0.1,
-    Rounding = 3,
-    Callback = function(Value)
-        PredictionBase = Value
-    end
-})
-    
+ 
     local UnlockBind = AimingSettings.LockMode.UnlockBind
     UniversalTab:AddLabel("Unlock Bind"):AddKeyPicker("AimingLockModeUnlock", {
         Text = "Unlock Bind",
